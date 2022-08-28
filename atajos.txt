@@ -1,0 +1,4 @@
+http://localhost:8080/di/empleado/crearEmpleado
+http://localhost:8080/di/empleado/buscarEmpleadoPorCC/{cc}
+http://localhost:8080/di/empleado/listarEmpleados
+http://localhost:8080/di/empleado/borrarEmpleado/{cc}

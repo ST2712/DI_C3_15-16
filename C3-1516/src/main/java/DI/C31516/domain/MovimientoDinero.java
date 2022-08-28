@@ -8,7 +8,4 @@ import lombok.Data;
     private String conceptoMovimiento;
     private Empleado empleado;
 
-    public MovimientoDinero(Empleado empleado) {
-        this.empleado = empleado;
-    }
 }
