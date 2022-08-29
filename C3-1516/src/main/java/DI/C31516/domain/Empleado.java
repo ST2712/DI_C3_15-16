@@ -11,11 +11,8 @@ public class Empleado {
 
     private String nombre;
     private String correo;
-    private String nombreEmpresaPertenece;
+    private Empresa empresaPertenece;
+    private int numCedula;
     private Rol rolEmpleado;
-
-    public Empleado(Rol rolEmpleado){
-        this.rolEmpleado = rolEmpleado;
-    }
 
 }
