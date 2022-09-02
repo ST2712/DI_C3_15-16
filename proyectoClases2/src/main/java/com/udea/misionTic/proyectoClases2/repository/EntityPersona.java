@@ -20,8 +20,11 @@ public class EntityPersona {
     private String apellido;
 
     @Column(name = "edad")
-    private int edad;
+    private Long edad;
 
     @Column(name = "doc")
     private String doc;
+
+    @Column(name = "contraseña")
+    private String contraseña;
 }

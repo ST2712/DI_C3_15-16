@@ -1,6 +1,7 @@
 package com.udea.misionTic.proyectoClases2.controller;
 
 import com.udea.misionTic.proyectoClases2.domain.Persona;
+import com.udea.misionTic.proyectoClases2.repository.EntityPersona;
 import com.udea.misionTic.proyectoClases2.services.ServiceProgramaAcademico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/persona")
@@ -117,6 +119,37 @@ public class ControllerProgramaAcademico {
         Boolean salida = serviceProgramaAcademico.borrarPersona(p);
 
         return new ResponseEntity<Boolean>(salida, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/udea/mintic/listarTodosJPA",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> listarTodo(){
+
+        return new ResponseEntity<Object>(serviceProgramaAcademico.listarTodosJPA(), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/udea/mintic/insertarPersonaJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> insertarPersona(@RequestBody EntityPersona persona){
+
+        return new ResponseEntity<Boolean>(serviceProgramaAcademico.insertarPersonaJPA(persona), HttpStatus.OK);
+    }
+
+    //Hay que validar si existe, implementar si hay tiempo
+    @PutMapping(path = "/udea/mintic/actualizarTodoJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> actualizarTodoJPA(@RequestBody EntityPersona persona){
+
+        return new ResponseEntity<Boolean>(serviceProgramaAcademico.actualizarTodoJPA(persona), HttpStatus.OK);
+    }
+
+    @PatchMapping(path = "/udea/mintic/actualizarParcialJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void insertarParcialJPA(@RequestBody EntityPersona persona){
+
+        serviceProgramaAcademico.actualizarParcialJPA(persona);
+    }
+
+    @DeleteMapping(path = "/udea/mintic/borrarPersonaJPA/{id}")
+    public void borrarPersonaJPA(@PathVariable Long id){
+
+        serviceProgramaAcademico.borrarPersonaJPA(id);
     }
 
 }
