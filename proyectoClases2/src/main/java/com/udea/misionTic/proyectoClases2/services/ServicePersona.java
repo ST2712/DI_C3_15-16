@@ -1,8 +1,11 @@
 package com.udea.misionTic.proyectoClases2.services;
 
 import com.udea.misionTic.proyectoClases2.domain.Persona;
+import com.udea.misionTic.proyectoClases2.repository.EntityPermisos;
 import com.udea.misionTic.proyectoClases2.repository.EntityPersona;
+import com.udea.misionTic.proyectoClases2.repository.RepositoryPermisos;
 import com.udea.misionTic.proyectoClases2.repository.RepositoryPersona;
+import com.udea.misionTic.proyectoClases2.util.EnumRol;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ServiceProgramaAcademico {
+public class ServicePersona {
 
     @Getter
     @Setter
@@ -20,10 +23,12 @@ public class ServiceProgramaAcademico {
 
     @Autowired
     RepositoryPersona repositoryPersona;
+    @Autowired
+    RepositoryPermisos repositoryPermisos;
 
     ArrayList<Persona> listaP;
 
-    public ServiceProgramaAcademico(ArrayList<Persona> listaP) {
+    public ServicePersona(ArrayList<Persona> listaP) {
         this.listaP = listaP;
     }
 
@@ -174,6 +179,29 @@ public class ServiceProgramaAcademico {
     public void borrarPersonaJPA(Long id){
 
         repositoryPersona.deleteById(id);
+    }
+
+    public void insertarPersonaRol(EntityPersona persona){
+
+        if(persona.getRol().equals(EnumRol.ADMIN)){
+
+            repositoryPersona.save(persona);
+            EntityPermisos ePerTmp = new EntityPermisos(true, true, true, true, persona);
+            repositoryPermisos.save(ePerTmp);
+        }
+        else if(persona.getRol().equals(EnumRol.USER)){
+            repositoryPersona.save(persona);
+            EntityPermisos ePerTmp = new EntityPermisos(true, false, false, true, persona);
+            repositoryPermisos.save(ePerTmp);
+        }
+        else if(persona.getRol().equals(EnumRol.VISITANTE)){
+            repositoryPersona.save(persona);
+            EntityPermisos ePerTmp = new EntityPermisos(true, false, false, false, persona);
+            repositoryPermisos.save(ePerTmp);
+        }
+        else{
+            System.err.println("No se pudo obtener el rol");
+        }
     }
 
 }
