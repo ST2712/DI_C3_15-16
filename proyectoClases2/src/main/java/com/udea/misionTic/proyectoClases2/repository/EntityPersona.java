@@ -1,5 +1,6 @@
 package com.udea.misionTic.proyectoClases2.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udea.misionTic.proyectoClases2.util.EnumRol;
 import lombok.Data;
 
@@ -35,5 +36,6 @@ public class EntityPersona {
     private EnumRol rol;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
+    @JsonIgnore
     private Collection<EntityPermisos> permisosCollection;
 }
