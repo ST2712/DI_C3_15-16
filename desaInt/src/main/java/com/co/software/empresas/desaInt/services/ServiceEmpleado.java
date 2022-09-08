@@ -23,7 +23,7 @@ public class ServiceEmpleado {
         return Boolean.TRUE;
     }
 
-    public List<EntityEmpleado> listarTodosJpa(){
+    public List<EntityEmpleado> listarEmpleadosJpa(){
 
         List<EntityEmpleado> list =repositoryEmpleado.findAll();
         return list;
@@ -31,7 +31,7 @@ public class ServiceEmpleado {
 
     public Boolean borrarEmpleadoJpa(Long id){
 
-        List<EntityEmpleado> list = listarTodosJpa();
+        List<EntityEmpleado> list = listarEmpleadosJpa();
         Boolean encontrado = Boolean.FALSE;
 
         for (int i = 0; i < list.size() && !encontrado; i++){

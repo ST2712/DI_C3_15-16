@@ -22,9 +22,9 @@ public class ControllerEmpleado {
     }
 
     @GetMapping(path = "listarEmpleadosJpa", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> listarTodosJpa(){
+    public ResponseEntity<Object> listarEmpleadosJpa(){
 
-        return new ResponseEntity<Object>(serviceEmpleado.listarTodosJpa(), HttpStatus.OK);
+        return new ResponseEntity<Object>(serviceEmpleado.listarEmpleadosJpa(), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "borrarEmpleadoJpa/{id}")
