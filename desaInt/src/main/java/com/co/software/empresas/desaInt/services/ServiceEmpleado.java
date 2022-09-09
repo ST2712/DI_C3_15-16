@@ -44,4 +44,19 @@ public class ServiceEmpleado {
         }
         return encontrado;
     }
+
+    public EntityEmpleado buscarEmpleadoPorId(Long id){
+
+        List<EntityEmpleado> list = listarEmpleadosJpa();
+        EntityEmpleado buscado = null;
+
+        for (int i = 0; i < list.size(); i++) {
+
+            if(list.get(i).getId().equals(id)){
+                buscado = list.get(i);
+            }
+        }
+
+        return buscado;
+    }
 }

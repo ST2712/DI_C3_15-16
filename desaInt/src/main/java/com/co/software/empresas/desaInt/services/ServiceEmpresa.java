@@ -28,4 +28,20 @@ public class ServiceEmpresa {
          List<EntityEmpresa> list = repositoryEmpresa.findAll();
          return list;
     }
+
+    public Boolean borrarEmpresaJpa(Long id){
+
+        Boolean encontrado = Boolean.FALSE;
+        List<EntityEmpresa> list = listarEmpresasJpa();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            EntityEmpresa empresaActual = list.get(i);
+            if(empresaActual.getId() == id){
+                repositoryEmpresa.delete(empresaActual);
+                encontrado = Boolean.TRUE;
+            }
+        }
+        return encontrado;
+    }
 }

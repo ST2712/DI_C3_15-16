@@ -1,9 +1,11 @@
 package com.co.software.empresas.desaInt.repository;
 
 import com.co.software.empresas.desaInt.util.EnumRol;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -26,4 +28,8 @@ public class EntityEmpleado {
     @Column(name = "rol")
     @Enumerated(EnumType.STRING)
     private EnumRol rol;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
+    @JsonIgnore
+    private Collection<EntityMovimientoDinero> movimientoDineroCollection;
 }

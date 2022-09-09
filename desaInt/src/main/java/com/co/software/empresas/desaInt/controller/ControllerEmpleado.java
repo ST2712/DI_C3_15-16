@@ -15,19 +15,19 @@ public class ControllerEmpleado {
     @Autowired
     ServiceEmpleado serviceEmpleado;
 
-    @PostMapping(path = "insertarEmpleadoJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/insertarEmpleadoJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> insertarEmpleadoJpa(@RequestBody EntityEmpleado empleado){
 
         return new ResponseEntity<Boolean>(serviceEmpleado.insertarEmpleadoJpa(empleado), HttpStatus.OK);
     }
 
-    @GetMapping(path = "listarEmpleadosJpa", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/listarEmpleadosJpa", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> listarEmpleadosJpa(){
 
         return new ResponseEntity<Object>(serviceEmpleado.listarEmpleadosJpa(), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "borrarEmpleadoJpa/{id}")
+    @DeleteMapping(path = "/borrarEmpleadoJpa/{id}")
     public ResponseEntity<Boolean> borrarEmpleadoJpa(@PathVariable Long id){
 
         return new ResponseEntity<Boolean>(serviceEmpleado.borrarEmpleadoJpa(id), HttpStatus.OK);

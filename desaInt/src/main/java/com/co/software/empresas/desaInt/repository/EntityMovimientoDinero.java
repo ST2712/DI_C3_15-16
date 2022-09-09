@@ -10,6 +10,16 @@ import javax.persistence.*;
 @Table(name = "movimiento_dinero")
 public class EntityMovimientoDinero {
 
+    public EntityMovimientoDinero(){
+
+    }
+
+    public EntityMovimientoDinero(Long montoMoviento, String conceptoMovimiento, EntityEmpleado empleado) {
+        this.montoMoviento = montoMoviento;
+        this.conceptoMovimiento = conceptoMovimiento;
+        this.empleado = empleado;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,7 +30,8 @@ public class EntityMovimientoDinero {
     @Column(name = "concepto_movimiento")
     private String conceptoMovimiento;
 
-    @Column(name = "encargado_movimiento")
-    //TODO Preguntar como hacer que sirva con la clase Empleado
-    private String empleado;
+
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EntityEmpleado empleado;
 }
