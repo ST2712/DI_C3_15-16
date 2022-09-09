@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "permisos")
 public class EntityPermisos {
 
+    public EntityPermisos() {
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,4 +40,5 @@ public class EntityPermisos {
         this.borrar = borrar;
         this.idPersona = idPersona;
     }
+
 }
