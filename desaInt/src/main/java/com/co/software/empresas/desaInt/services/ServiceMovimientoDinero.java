@@ -1,7 +1,7 @@
 package com.co.software.empresas.desaInt.services;
 
-import com.co.software.empresas.desaInt.repository.EntityEmpleado;
-import com.co.software.empresas.desaInt.repository.EntityMovimientoDinero;
+import com.co.software.empresas.desaInt.domain.EntityEmpleado;
+import com.co.software.empresas.desaInt.domain.EntityMovimientoDinero;
 import com.co.software.empresas.desaInt.repository.RepositoryMovimientoDinero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

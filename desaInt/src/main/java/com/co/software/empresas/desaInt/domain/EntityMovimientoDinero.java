@@ -1,6 +1,5 @@
-package com.co.software.empresas.desaInt.repository;
+package com.co.software.empresas.desaInt.domain;
 
-import com.co.software.empresas.desaInt.domain.Empleado;
 import lombok.Data;
 
 import javax.persistence.*;

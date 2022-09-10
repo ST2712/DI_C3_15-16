@@ -1,4 +1,4 @@
-package com.co.software.empresas.desaInt.repository;
+package com.co.software.empresas.desaInt.domain;
 
 import com.co.software.empresas.desaInt.util.EnumRol;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +12,17 @@ import java.util.Collection;
 @Table(name = "empleado")
 public class EntityEmpleado {
 
+    public EntityEmpleado(){
+
+    }
+
+    public EntityEmpleado(String nombre, String correo, EnumRol rol, EntityEmpresa empresa) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.rol = rol;
+        this.empresa = empresa;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,9 +32,6 @@ public class EntityEmpleado {
 
     @Column(name = "correo")
     private String correo;
-    //TODO Modificar y preguntar para que sea de tipo empresa y no Sring
-    @Column(name = "empresa")
-    private String empresa;
 
     @Column(name = "rol")
     @Enumerated(EnumType.STRING)
@@ -32,4 +40,8 @@ public class EntityEmpleado {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
     @JsonIgnore
     private Collection<EntityMovimientoDinero> movimientoDineroCollection;
+
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EntityEmpresa empresa;
 }

@@ -1,6 +1,6 @@
 package com.co.software.empresas.desaInt.controller;
 
-import com.co.software.empresas.desaInt.repository.EntityEmpresa;
+import com.co.software.empresas.desaInt.domain.EntityEmpresa;
 import com.co.software.empresas.desaInt.services.ServiceEmpresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,5 +37,17 @@ public class ControllerEmpresa {
         else{
             return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(path = "/buscarEmpresaPorIdJpa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EntityEmpresa> buscarEmpresaPorIdJpa(@PathVariable Long id){
+
+        return new ResponseEntity<EntityEmpresa>(serviceEmpresa.buscarEmpresaPorIdJpa(id), HttpStatus.OK);
+    }
+
+    @PatchMapping(path = "/actualizarDatosEmpresaJpa", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> actualizarDatosEmpresaJpa(@RequestBody EntityEmpresa empresa){
+
+        return new ResponseEntity<Boolean>(serviceEmpresa.actualizarDatosEmpresaJpa(empresa), HttpStatus.OK);
     }
 }

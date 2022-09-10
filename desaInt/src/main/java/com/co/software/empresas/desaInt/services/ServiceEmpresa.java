@@ -1,6 +1,6 @@
 package com.co.software.empresas.desaInt.services;
 
-import com.co.software.empresas.desaInt.repository.EntityEmpresa;
+import com.co.software.empresas.desaInt.domain.EntityEmpresa;
 import com.co.software.empresas.desaInt.repository.RepositoryEmpresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +43,36 @@ public class ServiceEmpresa {
             }
         }
         return encontrado;
+    }
+
+    public EntityEmpresa buscarEmpresaPorIdJpa(Long id){
+
+        return repositoryEmpresa.findById(id).orElse(null);
+    }
+
+    public Boolean actualizarDatosEmpresaJpa(EntityEmpresa empresa){
+
+        EntityEmpresa empresaTemp = buscarEmpresaPorIdJpa(empresa.getId());
+
+        if(empresaTemp == null){
+            return Boolean.FALSE;
+        }
+
+        if(empresa.getNombre() != null){
+            empresaTemp.setNombre(empresa.getNombre());
+        }
+        if(empresa.getDireccion() != null){
+            empresaTemp.setDireccion(empresa.getDireccion());
+        }
+        if (empresa.getTelefono() != null) {
+            empresaTemp.setTelefono(empresa.getTelefono());
+        }
+        if(empresa.getNit() != null){
+            empresaTemp.setNit(empresa.getNit());
+        }
+
+        repositoryEmpresa.save(empresaTemp);
+
+        return Boolean.TRUE;
     }
 }
