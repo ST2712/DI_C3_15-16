@@ -1,10 +1,8 @@
-package com.co.software.empresas.desaInt.domain;
+package com.co.software.empresas.desaInt.repository;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Data
 @Entity
@@ -26,8 +24,4 @@ public class EntityEmpresa {
 
     @Column(name = "nit")
     private Long nit;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empresa")
-    @JsonIgnore
-    private Collection<EntityEmpleado> empleadoCollection;
 }
