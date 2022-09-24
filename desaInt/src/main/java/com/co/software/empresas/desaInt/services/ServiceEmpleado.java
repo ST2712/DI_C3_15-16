@@ -16,7 +16,7 @@ public class ServiceEmpleado {
     RepositoryEmpleado repositoryEmpleado;
 
     @Autowired
-    RepositoryEmpresa repositoryEmpresa;
+    ServiceEmpresa serviceEmpresa;
 
     public Boolean insertarEmpleadoJpa(EntityEmpleado empleado){
 
@@ -32,6 +32,14 @@ public class ServiceEmpleado {
 
         List<EntityEmpleado> list =repositoryEmpleado.findAll();
         return list;
+    }
+
+    public List<EntityEmpleado> listarEmpleadosintentoBusqueda(String palabraClave){
+
+        if(palabraClave != null){
+            return repositoryEmpleado.findAll(palabraClave);
+        }
+        return repositoryEmpleado.findAll();
     }
 
     public Boolean borrarEmpleadoJpa(Long id){
@@ -94,4 +102,5 @@ public class ServiceEmpleado {
         }
         return Boolean.TRUE;
     }
+
 }
